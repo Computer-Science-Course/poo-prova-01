@@ -1,11 +1,13 @@
 package aplicacao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
 import model.entidades.Pagamento;
+import model.entidades.PagamentoBoleto;
 import model.entidades.PagamentoCartaoDeCredito;
 import model.enums.EstadoPagamento;
 
@@ -13,7 +15,7 @@ public class Programa {
 
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
-		
+//		DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("Entre com o número de pagamentos: ");
@@ -48,13 +50,24 @@ public class Programa {
 					pagamentos.add(new PagamentoCartaoDeCredito(
 							id, EstadoPagamento.valueOf(estado), valor, numeroParcelas, taxaJuros
 					));
+					scanner.nextLine();
 					
 				} else if(resposta.toUpperCase().equals("B")) {
-					System.out.print("Escolheu boleto.");										
+					scanner.nextLine();
+					System.out.print("Data de Vencimento (dd/MM/yyyy): ");
+					LocalDate dataVencimento = LocalDate.parse(scanner.nextLine());
+					
+					System.out.print("Data de Pagemento (dd/MM/yyyy): ");					
+					LocalDate dataPagamento = LocalDate.parse(scanner.nextLine());
+					
+					pagamentos.add(new PagamentoBoleto(
+							id, EstadoPagamento.valueOf(estado), valor, dataVencimento, dataVencimento
+							));
+					
+					
 				} else {
 					System.out.print("Escolheu opção inválida.");															
 				}
-				scanner.nextLine();
 				
 			}
 			// Imprimindo os relatórios
