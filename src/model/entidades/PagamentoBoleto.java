@@ -2,6 +2,7 @@ package model.entidades;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import model.enums.EstadoPagamento;
@@ -46,11 +47,13 @@ public class PagamentoBoleto extends Pagamento{
 	public String relatorio() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
+		DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
 		stringBuilder.append("Id: " + this.getId());
-		stringBuilder.append(", Estado: " + this.getEstado() + " (Boleto) ");
-		stringBuilder.append("Data de Vencimento: " + this.getDataVencimento());
-		stringBuilder.append(", Data Pagamento: " + this.getDataPagamento());
-		stringBuilder.append(", Valor Final: " + String.format("%.2f" , this.getValor()));
+		stringBuilder.append(", Estado: " + this.getEstado() + ", (Boleto) ");
+		stringBuilder.append("Data de Vencimento: " + this.getDataVencimento().format(formatacao));
+		stringBuilder.append(", Data Pagamento: " + this.getDataPagamento().format(formatacao));
+		stringBuilder.append(", Valor Final: R$" + String.format("%.2f" , this.getValor()));
 		stringBuilder.append(" Pago a " + this.diasAposPagamento() + " dias");
 		
 		return stringBuilder.toString(); 

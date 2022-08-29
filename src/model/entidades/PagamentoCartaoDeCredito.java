@@ -46,9 +46,9 @@ public class PagamentoCartaoDeCredito extends Pagamento {
 		StringBuilder stringBuilder = new StringBuilder();
 		
 		stringBuilder.append("Id: " + this.getId());
-		stringBuilder.append(", Estado: " + this.getEstado() + " (CARTÃO) ");
+		stringBuilder.append(", Estado: " + this.getEstado() + ", (CARTÃO) ");
 		stringBuilder.append("Número de parcelas: " + this.getNumeroParcelas());
-		stringBuilder.append(", Valor Final: " + String.format("%.2f" , this.valorFinal()));
+		stringBuilder.append(", Valor Final: R$" + String.format("%.2f" , this.valorFinal()));
 		
 		return stringBuilder.toString(); 
 	}
