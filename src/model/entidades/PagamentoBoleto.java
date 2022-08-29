@@ -51,7 +51,7 @@ public class PagamentoBoleto extends Pagamento{
 		stringBuilder.append("Data de Vencimento: " + this.getDataVencimento());
 		stringBuilder.append(", Data Pagamento: " + this.getDataPagamento());
 		stringBuilder.append(", Valor Final: " + String.format("%.2f" , this.getValor()));
-		stringBuilder.append("Pago a " + this.diasAposPagamento() + " dias");
+		stringBuilder.append(" Pago a " + this.diasAposPagamento() + " dias");
 		
 		return stringBuilder.toString(); 
 	}

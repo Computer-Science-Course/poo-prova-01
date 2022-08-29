@@ -1,6 +1,7 @@
 package aplicacao;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -15,7 +16,7 @@ public class Programa {
 
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
-//		DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("Entre com o número de pagamentos: ");
@@ -55,10 +56,10 @@ public class Programa {
 				} else if(resposta.toUpperCase().equals("B")) {
 					scanner.nextLine();
 					System.out.print("Data de Vencimento (dd/MM/yyyy): ");
-					LocalDate dataVencimento = LocalDate.parse(scanner.nextLine());
+					LocalDate dataVencimento = LocalDate.parse(scanner.nextLine(), formatacao);
 					
 					System.out.print("Data de Pagemento (dd/MM/yyyy): ");					
-					LocalDate dataPagamento = LocalDate.parse(scanner.nextLine());
+					LocalDate dataPagamento = LocalDate.parse(scanner.nextLine(), formatacao);
 					
 					pagamentos.add(new PagamentoBoleto(
 							id, EstadoPagamento.valueOf(estado), valor, dataVencimento, dataVencimento
